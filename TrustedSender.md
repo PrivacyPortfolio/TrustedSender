@@ -284,12 +284,15 @@ TrustedSender can be used to:
 If you DON'T have Paubox:  
     Request a QR code to get $250 discount on a subscription plan.
     Request assistance for integrating the TrustedSender Program with other email gateway solutions.
+    
 If you DON'T have RingCentral:  
     Request a QR code to get a $300 discount on a subscription plan.  
     Request assistance for integrating the TrustedSender Program with other telecommunications solutions
     such as Twilio Voice, SMS, or Chat.
+    
 If you DON'T have Yo-AI:  
     Clone, modify, and host the Yo-AI Assurance Platform in your environment.  
     Request assistance for integrating the TrustedSender Program with other AI Agent platforms.
+    
 If you DON'T have AWS:
     Replace or refactor lambda functions with similar serverless functions or cloud APIs suited for your environment. Do it yourself or request assistance if needed.
