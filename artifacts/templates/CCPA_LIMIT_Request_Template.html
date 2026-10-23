@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>CCPA LIMIT Request</title>
+<meta name="classification" content="privacy-rights-request, profile-update, data-governance, data-protection, data-processing-agreement">
+<meta name="priority" content="high">
+<meta name="intent" content="limit-data-processing, restrict-data-sharing, enforce-privacy-rights, protect-sensitive-information, ensure-compliance">
+<meta name="audience" content="human-and-ai">
+<meta name="keywords" content="behavioral tracking indicators, marketing automation signature, identity enrichment, data sharing, forensic analysis, PHI, SPI">
+
+<!--  RFC 5322 requirements -->
+<meta name="From" content="{{CP_sender_prior_email}}">
+<meta name="To" content="{{CTP_contact_email}}">
+<meta name="Date" content="{{M_sent_date}}">
+<meta name="Message-ID" content="{{M_message_uuid}}">
+<!--  Custom TrustedSender headers -->
+<meta name="x-origin-domain" content="{{CP_domain}}">
+<meta name="x-sender-system" content="{{CP_org_name}}">
+<meta name="x-template-id" content="{{M_message_type}}">
+<meta name="x-trusted-sender-tag" content="{{CP_trusted_sender_tag}}">
+
+<style>
+  body{margin:20px 10px 20px 10px; padding:0;background:#f4f7fb;font-family:Arial,Helvetica,sans-serif;}
+  .wrap{max-width:600px;margin:24px auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.10);}
+  .header{background:#0247DC;padding:28px 32px;color:#ffffff;}
+  .header h1{margin:0;font-size:22px;font-weight:700;line-height:1.3;}
+  .header p{margin:6px 0 0;font-size:14px;opacity:0.88;}
+  .body{padding:28px 32px;}
+  .row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f0f2f5;}
+  .row:last-child{border-bottom:none;}
+  .lbl{font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;width:110px;flex-shrink:0;padding-top:1px;}
+  .val{font-size:14px;color:#111827;line-height:1.5;}
+  .btn{display:inline-block;padding:12px 22px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;margin-top:20px;}
+  .btn-primary{background:#0247DC;color:#ffffff;}
+  .footer{padding:16px 32px;background:#f9fafb;border-top:1px solid #e5e7eb;font-size:12px;color:#9ca3af;}
+  p{font-size:16px;color:#374151;line-height:1.5;margin:0 0 12px;}
+  .alert{background:#eff6ff;border-left:3px solid #0247DC;padding:12px 16px;border-radius:4px;font-size:14px;color:#1e40af;margin-bottom:16px;}
+  .span-highlight{background:yellow;border:3px solid #0247DC;padding:4px 4px 4px 4px;border-radius:4px;}
+</style>
+</head>
+
+<body>
+<div>
+<p>
+<span>From:&nbsp;&nbsp;{{CP_sender_email_display_name}} at {{CP_sender_email}}</span><br/> 
+<span>Location:&nbsp;{{CP_location}}</span><br/> 
+<span>Date:&nbsp;&nbsp;{{M_sent_date}}</span>
+<span>To:&nbsp;&nbsp;&nbsp;{{CTP_sender_email}}</span> 
+<span>Subject:&nbsp;CCPA LIMIT Request — Restriction of Sensitive Personal Information Processing</span>
+</p>
+<h1>CCPA LIMIT Request — Restriction of Sensitive Personal Information Processing</h1>
+</div>
+
+<div>
+<p>
+Hello {{CTP_sender_email_display_name}},<br/>
+I am submitting this CCPA LIMIT request to restrict the processing of my Sensitive Personal Information (SPI)
+under California Civil Code §1798.121.<br/>
+This request applies to {{CTP_org_name}} because {{CTP_org_name}} processes SPI originating from<br/> 
+{{SP_org_name}}<br/> 
+without my authorization and without a valid first party relationship.<br/>
+This LIMIT request applies to all SPI you receive through:
+</p>
+<ul>
+    <li>{{SP_org_name}} clinical workflows</li>
+    <li>{{SP_org_name}} patient experience workflows</li>
+    <li>{{SP_org_name}} appointment systems</li>
+    <li>{{SP_org_name}} identity linked notifications</li>
+    <li>{{SP_org_name}} / HL7 / EHR / HIE pipelines</li>
+    <li>{{SP_org_name}} affiliated data transfer systems</li>
+</ul>
+</div>
+
+<div>
+<h3>Required Action Under CCPA §1798.121</h3>
+<p>I hereby request that you limit the use and disclosure of my SPI to the purposes that are:</p>
+<ul>
+    <li>strictly necessary</li>
+    <li>essential for service delivery</li>
+    <li>directly tied to the transaction</li>
+    <li>not used for marketing, analytics, profiling, enrichment, or segmentation</li>
+</ul>
+</div>
+
+<div>
+<h3>Enforcement Monitoring of My CCPA Request to LIMIT</h3>
+<p>I will monitor {{CTP_org_name}}'s use of my SPI and PHI as a covered individual 
+    and evaluate your compliance with my request.<br/>
+For each message (email, voice, SMS) I receive from {{SP_org_name}}
+OR {{CTP_domain}}:
+</p>
+<p>
+    I will notify {{CTP_contact_email}} and {{SP_org_name}} whenever I receive an event from {{SP_org_name}}
+            indicating that my SPI was processed.<br/>
+            This notification will include the date and time and processing activity 
+            to help {{CTP_org_name}} AND {{SP_org_name}} find corresponding events in its logs.<br/>
+            If corresponding events ARE discovered that pertains to, or includes {{CP_sender_email_display_name}}'s SPI<br/>
+            {{CTP_org_name}} can notify {{SP_org_name}}, identify the processing activity
+            and explain why it is strictly necessary.<br/>
+            <em>The notice will also include a request to email me an acknowledgement if a positive match was found.</em>
+</p>
+<p>
+    I will send a follow-up message to {{SP_org_name}} if I have not received a reply from 
+    {{CTP_sender_email}} OR {{SP_org_name}} within 30 calendar days after {{M_sent_date}}.<br/>
+    The follow-up message will request that {{CTP_org_name}} AND {{SP_org_name}} provide me 
+    with a copy of your most recent contractual authorization defining which activities are essential for service delivery.<br/>
+    <em>I monitor the other vendors that also process my SPI / PHI to remove false positives due to misattribution.</em>
+</p>
+</div>
+
+<div>
+<p>
+    As a California Consumer exercising my rights under California Consumer Privacy Act (CCPA),<br/>
+     {{CTP_org_name}} must stop using my SPI for:</p>
+<ul>
+    <li>behavioral tracking</li>
+    <li>identity enrichment</li>
+    <li>consumer analytics</li>
+    <li>segmentation</li>
+    <li>profiling</li>
+    <li>marketing automation</li>
+    <li>engagement scoring</li>
+    <li>cross vendor sharing</li>
+    <li>downstream processing</li>
+    <li>data brokerage</li>
+</ul>
+<p>
+    {{CTP_org_name}} must also stop sharing my SPI with:
+</p>
+<ul>
+    <li>analytics vendors</li>
+    <li>enrichment vendors</li>
+    <li>data brokers</li>
+    <li>marketing automation platforms</li>
+    <li>any third parties not essential to service delivery</li>
+</ul>
+</div>
+
+<div>
+<h3>Why This LIMIT Request Applies to {{CTP_org_name}}</h3>
+<p>{{CTP_org_name}} processes SPI that originates from {{SP_org_name}}, including:</p>
+<ul>
+    <li>appointment linked identifiers</li>
+    <li>encounter linked identifiers</li>
+    <li>clinical context metadata</li>
+    <li>patient experience survey identifiers</li>
+    <li>identity attributes tied to medical events</li>
+</ul>
+<p>
+    {{SP_org_name}}: 
+</p>
+<ul>
+    <li>is EXEMPT from the CCPA</li>
+    <li>refuses to acknowledge privacy rights requests</li>
+    <li>requires Suppliers to sign non-disclosure agreements</li>
+    <li>refuses to identify Suppliers</li>
+    <li>refuses to provide authorization of its Suppliers to process SPI, PHI, and PII of its members</li>
+    <li>blocks and ignores requests and complaints from its members</li>
+    <li>engages in unauthorized, dual-use processing of SPI, PHI, and PII of its members</li>
+</ul>
+<p>
+FHIR and the HL7 protocol requires healthcare organizations to document when medical records are accessed.<br/>
+The raw HL7 interchanges SHOULD contain evidence of who accessed what records for what purpose, and often who authorized it.<br/>
+Despite the law, and my outstanding requests, {{SP_org_name}} has failed to disclose my own COMPLETE medical records to me,<br/>
+prompting me to request them directly from {{SP_org_name}}'s Suppliers.
+</p>
+</div>
+
+<div>
+<h3>Required Disclosures</h3>
+<p>Under CCPA, please provide:</p>
+<ol>
+    <li>A list of all categories of SPI you process about me.</li>
+    <li>A list of all third parties with whom you have shared my SPI.</li>
+    <li>Confirmation of whether you receive SPI or PHI from {{SP_org_name}}'s HL7, EHR, or HIE systems.</li>
+    <li>Confirmation that you will limit all future SPI processing to service delivery functions I consider essential.</li>
+</ol>
+</div>
+
+<div>
+<h3>Evidence Preservation</h3>
+<p>
+Do NOT delete any SPI or PII you have stored.<br/> 
+Do NOT delete logs, routing metadata, enrichment artifacts, or vendor sharing records.<br/>
+I am exercising my right to LIMIT processing, not to DELETE data.
+</p>
+</div>
+
+<div>
+<h3>First Party Relationship Option</h3>
+<p>
+Without waiving this LIMIT request which applies to all future processing of my SPI,<br/>
+I want to establish a first party relationship with {{CTP_org_name}}
+for the purpose of receiving my medical records directly from Suppliers to {{SP_org_name}}. 
+<br/>
+Please contact my authorized agent: {{CP_org_name}} at {{CP_sender_email}}
+to exchange Business Associate Agreements.
+<br/>
+I use an encrypted email gateway which is verified by Paubox — and HITRUST certified.
+</p>
+</div>
+
+<div>
+<h3>My CCPA Request</h3>
+<p>Under CCPA § 1798.121, I hereby request that your organization:</p>
+<ol>
+    <li><strong>LIMIT the processing of my Sensitive Personal Information (SPI)</strong><br/>
+You must restrict processing to clinical healthcare delivery only, and cease all marketing, analytics, profiling, segmentation, or data brokerage activities involving my SPI.
+</li>
+    <li><strong>CEASE all use of my SPI for marketing or advertising</strong><br/>
+This includes behavioral analytics, experience scoring, identity enrichment, and any processing that is not strictly necessary for clinical care.
+</li>
+    <li><strong>CEASE all sharing of my SPI with third parties</strong><br/>
+This includes downstream processors, analytics partners, data brokers, or any entity not directly involved in clinical healthcare delivery.
+</li>
+    <li><strong>DISCLOSE all SPI previously used for marketing purposes</strong><br/>
+Any SPI used for segmentation, analytics, or marketing must be disclosed under CCPA&apos;s right to limit and right to delete.
+</li>
+    <li><strong>CONFIRM whether your organization receives PHI or SPI from {{SP_org_name}}&apos;s HL7, EHR or HIE systems</strong><br/>
+I require written confirmation of whether your systems have access to PHI or SPI through {{SP_org_name}}&apos;s clinical infrastructure.
+</li>
+    <li><strong>PROVIDE a list of all categories of SPI you process</strong><br/>
+This includes medical records, encounter data, demographic data, behavioral analytics, identity enrichment, and marketing attributes.
+</li>
+    <li><strong>PROVIDE a list of all third parties with whom you share my SPI</strong><br/>
+This includes data brokers, analytics vendors, marketing partners, or any downstream processors.
+</li>
+</ol>
+
+</div>
+
+<div>
+<h3>Certification</h3>
+<p>
+I certify that the information provided is accurate and that I am exercising my rights under California law.<br/><br/>
+{{CP_sender_email_display_name}}<br/>
+{{CP_location}}<br/>
+{{M_sent_date}}
+</p>
+</div>
+
+<div class="footer">
+<p>
+<strong>Notice Regarding Automated Processing: </strong><br/>
+Direct communications and statutory privacy preferences submitted by this agent are logged automatically.<br/>
+If your unsubscribe method requires manual verification or non-standard authentication, <br/>
+please remove {{CP_OBO}} from all emails originating from {{CTP_sender_email}}.    
+</p>
+    
+<p style="margin:0;">
+    This message was sent securely from {{CP_OBO}}&apos;s authorized agent, {{CP_org_name}}.
+</p>
+</div>
+
+</body>
+</html>

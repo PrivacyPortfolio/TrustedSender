@@ -1,0 +1,112 @@
+<!--
+Sender_Email_Analysis Template v2
+Triggered: on quarantine, via Lambda
+Purpose: transparent disclosure of why a message was quarantined, with
+self-verifiable checks the sender can run themselves. Not a findings
+letter, not a legal notice, not a threat of escalation.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Why your message was held for review</title>
+<meta name="classification" content="change-of-address, contact-update, trusted-sender-evaluation">
+<meta name="priority" content="high">
+<meta name="intent" content="email sender analysis">
+<meta name="audience" content="human-and-ai">
+<meta name="keywords" content="SPF, DKIM, DMARC, TLS, MTA-STS, Reply-To">
+<!--  RFC 5322 requirements -->
+<meta name="From" content="{{CP_sender_email}}">
+<meta name="To" content="{{CTP_contact_email}}">
+<meta name="Date" content="{{M_sent_date}}">
+<meta name="Message-ID" content="{{M_message_uuid}}">
+<!--  Custom TrustedSender headers -->
+<meta name="x-origin-domain" content="{{CP_domain}}">
+<meta name="x-sender-system" content="{{CP_org_name}}">
+<meta name="x-template-id" content="{{M_message_type}}">
+<meta name="x-trusted-sender-tag" content="{{CP_trusted_sender_tag}}">
+
+<style>
+  body{margin:20px 10px 20px 10px; padding:0;background:#f4f7fb;font-family:Arial,Helvetica,sans-serif;}
+  .wrap{max-width:600px;margin:24px auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.10);}
+  .header{background:#0247DC;padding:28px 32px;color:#ffffff;}
+  .header h1{margin:0;font-size:22px;font-weight:700;line-height:1.3;}
+  .header p{margin:6px 0 0;font-size:14px;opacity:0.88;}
+  .body{padding:28px 32px;}
+  .row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f0f2f5;}
+  .row:last-child{border-bottom:none;}
+  .lbl{font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;width:110px;flex-shrink:0;padding-top:1px;}
+  .val{font-size:14px;color:#111827;line-height:1.5;}
+  .btn{display:inline-block;padding:12px 22px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;margin-top:20px;}
+  .btn-primary{background:#0247DC;color:#ffffff;}
+  .footer{padding:16px 32px;background:#f9fafb;border-top:1px solid #e5e7eb;font-size:12px;color:#9ca3af;}
+  p{font-size:16px;color:#374151;line-height:1.5;margin:0 0 12px;}
+  .alert{background:#eff6ff;border-left:3px solid #0247DC;padding:12px 16px;border-radius:4px;font-size:14px;color:#1e40af;margin-bottom:16px;}
+  .span-highlight{background:yellow;border:3px solid #0247DC;padding:4px 4px 4px 4px;border-radius:4px;}
+</style>
+</head>
+
+<body>
+<div>
+<p>
+<span>From:&nbsp;&nbsp;{{CP_sender_email_display_name}} at {{CP_sender_email}}</span><br/> 
+<span>CC:&nbsp;&nbsp;&nbsp;{{CP_sender_email}}</span><br/>
+<span>Location:&nbsp;{{CP_location}}</span><br/> 
+<span>Date:&nbsp;&nbsp;{{M_sent_date}}</span><br/> 
+<span>To:&nbsp;&nbsp;&nbsp;{{CTP_contact_email}}</span><br/> 
+<span>Subject:&nbsp;Why your message was held for review</span>
+</p>
+<h1>Why your message was held for review</h1>
+</div>
+
+<div>
+<p>
+Hello {{CTP_contact_email_display_name}},<br/><br/>
+A message you sent to {{CP_sender_email}} was automatically
+held for review rather than delivered. This isn't an accusation — it's a
+transparency notice. Below is exactly what our system checked, what it found,
+and what's an interpretation versus a direct observation. You're welcome to
+run the same checks yourself and reach your own conclusion.
+</p>
+</div>
+
+<div class="section">
+<h3>What we directly observed (DATA)</h3>
+<p>
+These are protocol-level results — not opinions. 
+Each was independently checked and can be reproduced by you or any third party.
+</p>
+</div>
+
+<div class="section">
+{{M_message_content}}
+</div>
+
+<div class="section">
+<h3>What happens next</h3>
+<p>
+This message is currently held, not deleted. If you'd like it delivered,
+or want to discuss what we found, reply to this message or contact
+{{CP_contact_email_display_name}} directly at {{CP_contact_email}}. 
+If you believe this hold was made in error, tell us — we'll review and correct it.
+</p>
+</div>
+
+<div class="footer">
+<p>
+<strong>Notice Regarding Automated Processing: </strong><br/>
+Direct communications and statutory privacy preferences submitted by this agent are logged automatically.<br/>
+If your unsubscribe method requires manual verification or non-standard authentication, <br/>
+please remove {{CP_sender_email}} from all emails originating from {{CTP_sender_email}}.    
+</p>
+    
+<p style="margin:0;">
+    {{CP_sender_email_display_name}} &middot; This message was sent from {{CP_sender_email}}.
+</p>
+</div>
+
+</body>
+</html>

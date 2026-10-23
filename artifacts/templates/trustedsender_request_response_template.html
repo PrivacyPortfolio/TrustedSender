@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Become a TrustedSender</title>
+<meta name="classification" content="UnTrustedSender">
+<meta name="priority" content="high">
+<meta name="intent" content="request-registration">
+<meta name="audience" content="human-and-ai">
+<meta name="keywords" content="whitelist, trusted, safe, TrustedSender, registration">
+
+<!--  RFC 5322 requirements -->
+<meta name="From" content="{{CP_sender_prior_email}}">
+<meta name="To" content="{{CTP_contact_email}}">
+<meta name="Date" content="{{M_sent_date}}">
+<meta name="Message-ID" content="{{M_message_uuid}}">
+<!--  Custom TrustedSender headers -->
+<meta name="x-origin-domain" content="{{CP_domain}}">
+<meta name="x-sender-system" content="{{CP_org_name}}">
+<meta name="x-template-id" content="{{M_message_type}}">
+<meta name="x-trusted-sender-tag" content="{{CP_trusted_sender_tag}}">
+
+<style>
+  body{margin:20px 10px 20px 10px; padding:0;background:#f4f7fb;font-family:Arial,Helvetica,sans-serif;}
+  .wrap{max-width:600px;margin:24px auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.10);}
+  .header{background:#0247DC;padding:28px 32px;color:#ffffff;}
+  .header h1{margin:0;font-size:22px;font-weight:700;line-height:1.3;}
+  .header p{margin:6px 0 0;font-size:14px;opacity:0.88;}
+  .body{padding:28px 32px;}
+  .row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f0f2f5;}
+  .row:last-child{border-bottom:none;}
+  .lbl{font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;width:110px;flex-shrink:0;padding-top:1px;}
+  .val{font-size:14px;color:#111827;line-height:1.5;}
+  .btn{display:inline-block;padding:12px 22px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;margin-top:20px;}
+  .btn-primary{background:#0247DC;color:#ffffff;}
+  .footer{padding:16px 32px;background:#f9fafb;border-top:1px solid #e5e7eb;font-size:12px;color:#9ca3af;}
+  p{font-size:16px;color:#374151;line-height:1.5;margin:0 0 12px;}
+  .alert{background:#eff6ff;border-left:3px solid #0247DC;padding:12px 16px;border-radius:4px;font-size:14px;color:#1e40af;margin-bottom:16px;}
+  .span-highlight{background:yellow;border:3px solid #0247DC;padding:4px 4px 4px 4px;border-radius:4px;}
+</style>
+</head>
+
+<body>
+<div>
+<p>
+<span>From:&nbsp;&nbsp;{{CP_sender_email_display_name}} at {{CP_sender_email}}</span><br/> 
+<span>Location:&nbsp;{{CP_location}}</span><br/> 
+<span>Date:&nbsp;&nbsp;{{M_sent_date}}</span>
+<span>To:&nbsp;&nbsp;&nbsp;{{CTP_sender_email}}</span> 
+<span>Subject:&nbsp;Your request to become a TrustedSender</span>
+</p>
+<h1>Your request to become a TrustedSender</h1>
+</div>
+
+<div>
+<p>Hi {{CTP_sender_email_display_name}},</p>
+
+<p>
+Your message isn't singled out. Everything sent to this inbox is quarantined by default — deny-all, no exceptions.<br/>
+When we recieve messages from individuals or organizations at this email domain,<br/>
+the following controls are used to assign a trust levels to each unique address used<br/>
+to send me email from your organization: {{CTP_org_name}}.
+</p>
+
+<ul>
+  <li><strong>Authentication</strong> (SPF/DKIM/DMARC, aligned)</li>
+  <li><strong>Transport security</strong> (current TLS, no legacy fallback)</li>
+  <li><strong>Reachability</strong> (a real path to a person, not no-reply-only)</li>
+  <li><strong>Identity consistency</strong> (no From/domain mismatches)</li>
+</ul>
+
+<p>
+This applies equally to TrustedSenders and UnTrustedSenders.<br/>
+Whether the request came directly from you,<br/> 
+from an automated agent,<br/>
+or from an Intermediary Party as your Email Sending Provider (ESP)<br/>
+— a whitelist request is evaluated, not auto-granted.
+</p>
+
+<p style="font-weight: bold;">
+We have no records of YOUR REQUEST or REGISTRATION to become a TrustedSender.
+</p>
+
+<p>
+Someone in your organization MAY HAVE registered an email address as a TrustedSender.<br/>
+We try to match your email address, sender domain, and metadata 
+for an association with an Organization that has registered as a TrustedSender. 
+</p>
+
+<p>
+TrustedSenders maintain contact information with an accountable human at their organization
+for administrative use when email addresses, telephone numbers differ from what we are expecting.
+It's also used as an alternative contact in case communications are disrupted by outages and the like.
+</p>
+
+<p>
+For example, if we can match a new email address with a TrustedSender's organization,
+we add it automatically to the TrustedSender's registration.
+TrustedSenders can configure notifications to be sent to their contact email when
+their registration changes.
+</p>
+
+<p>
+TrustedSenders can also request that we notify them when we receive mesages from a new email address or telephone number
+ that is associated with their organization.
+TrustedSenders are trusted because WE HELP PROTECT THEM from impersonation.
+</p>
+
+<p>
+I recommend that you <a href="https://www.yo-ai.ai/trusted-sender.html">register as a TrustedSender</a>,<br/>
+or <a href="https://www.yo-ai.ai/just-ask.html">"Just-Ask"</a>.<br/>
+This is the easiest way to determine if your email address and telephone number is associated with an Organization 
+that has already registered.
+</p>
+
+<p>
+Note: this email includes a tracking pixel, used only to confirm delivery
+and open status for this evaluation.
+</p>
+
+<p>
+Questions beyond this message: <a href="https://www.yo-ai.ai/">Yo-AI Assurance Platform</a> · <a href="https://github.com/PrivacyPortfolio/yo_ai">Open Source Code Repository</a> ·
+or have your agents go to: <a href="https://privacyportfolio.com/agent-directory/solicitor-general/agent.json">solicitor-general/agent.json</a> directly.
+</p>
+
+</div>
+
+<div class="footer" style="font-size:11px;color:#888;">
+<p>
+<strong>Notice Regarding Automated Processing: </strong><br/>
+Direct communications and statutory privacy preferences submitted by this agent are logged automatically.<br/>
+If your unsubscribe method requires manual verification or non-standard authentication, <br/>
+please remove {{CP_OBO}} from all emails originating from {{CTP_sender_email}}.    
+</p>
+    
+<p style="margin:0;">
+    This message was sent securely from {{CP_OBO}}&apos;s authorized agent, {{CP_org_name}}.
+</p>
+</div>
+
+</body>
+</html>

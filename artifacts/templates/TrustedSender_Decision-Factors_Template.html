@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>TrustedSender Decision-Factors</title>
+<meta name="classification" content="decision-factors, profile-update, trusted-sender-evaluation">
+<meta name="priority" content="high">
+<meta name="intent" content="sender-email-analysis">
+<meta name="audience" content="human-and-ai">
+<meta name="keywords" content="sender pipeline fingerprint, behavioral tracking indicators, marketing automation signature, identity enrichment evidence, downstream data sharing, vendor behavior, forensic header analysis, zero-trust sender classification, PHI/SPI pipeline separation">
+
+<!--  RFC 5322 requirements -->
+<meta name="From" content="{{CP_sender_email}}">
+<meta name="To" content="{{CTP_contact_email}}">
+<meta name="Date" content="{{M_sent_date}}">
+<meta name="Message-ID" content="{{M_message_uuid}}">
+<!--  Custom TrustedSender headers -->
+<meta name="x-origin-domain" content="{{CP_domain}}">
+<meta name="x-sender-system" content="{{CP_org_name}}">
+<meta name="x-template-id" content="{{M_message_type}}">
+<meta name="x-trusted-sender-tag" content="{{CP_trusted_sender_tag}}">
+
+
+<style>
+  body{margin:20px 10px 20px 10px; padding:0;background:#f4f7fb;font-family:Arial,Helvetica,sans-serif;}
+  .wrap{max-width:600px;margin:24px auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.10);}
+  .header{background:#0247DC;padding:28px 32px;color:#ffffff;}
+  .header h1{margin:0;font-size:22px;font-weight:700;line-height:1.3;}
+  .header p{margin:6px 0 0;font-size:14px;opacity:0.88;}
+  .body{padding:28px 32px;}
+  .row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f0f2f5;}
+  .row:last-child{border-bottom:none;}
+  .lbl{font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;width:110px;flex-shrink:0;padding-top:1px;}
+  .val{font-size:14px;color:#111827;line-height:1.5;}
+  .btn{display:inline-block;padding:12px 22px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;margin-top:20px;}
+  .btn-primary{background:#0247DC;color:#ffffff;}
+  .footer{padding:16px 32px;background:#f9fafb;border-top:1px solid #e5e7eb;font-size:12px;color:#9ca3af;}
+  p{font-size:16px;color:#374151;line-height:1.5;margin:0 0 12px;}
+  .alert{background:#eff6ff;border-left:3px solid #0247DC;padding:12px 16px;border-radius:4px;font-size:14px;color:#1e40af;margin-bottom:16px;}
+  .span-highlight{background:yellow;border:3px solid #0247DC;padding:4px 4px 4px 4px;border-radius:4px;}
+</style>
+</head>
+
+
+<body>
+<div>
+<p>
+<span>From:&nbsp;&nbsp;{{CP_sender_email_display_name}} at {{CP_sender_email}}</span><br/> 
+<span>Location:&nbsp;{{CP_location}}</span><br/> 
+<span>Date:&nbsp;&nbsp;{{M_sent_date}}</span><br/> 
+<span>To:&nbsp;&nbsp;&nbsp;{{CTP_contact_email}}</span><br/> 
+<span>Subject:&nbsp;TrustedSender Decision-Factors</span>
+</p>
+<h1>TrustedSender Decision-Factors</h1>
+</div>
+
+
+<span style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-style: italic; font-size:18px; margin-left:40px; margin-bottom:20px;">
+  (How I Decide Whether a Sender Is Trusted)
+</span>
+<p>&nbsp;</p>
+<p>
+I classify senders using a zero trust model that evaluates technical, behavioral, and infrastructure signals.<br/> 
+A sender is not “trusted” because of who they claim to be — they are trusted because of how their email behaves.<br/>
+Below are the decision factors I use.
+</p>
+
+<div>
+<h3>1. TLS Negotiation & Cipher Strength</h3>
+<span class="span-highlight">decision-factor-1a:</span>	whether the sender uses modern encryption<br/><br/>
+<span class="span-highlight">decision-factor-1b:</span>	whether they support TLS 1.3<br/><br/>
+<span class="span-highlight">decision-factor-1c:</span>	whether they fall back to insecure ciphers<br/><br/>
+<span class="span-highlight">decision-factor-1d:</span>	whether they use deprecated key exchange<br/><br/>
+<span class="span-highlight">decision-factor-1e:</span>	whether they downgrade under load<br/><br/>
+</div>
+
+<div>
+<h3>2. MTA STS & TLS Reporting</h3>
+<span class="span-highlight">decision-factor-2a:</span>	Whether the sender publishes an MTA STS policy<br/><br/>
+<span class="span-highlight">decision-factor-2b:</span>	Whether the policy is “enforce”, “testing”, or “none”<br/><br/>
+<span class="span-highlight">decision-factor-2c:</span>	Whether TLSRPT reports are valid<br/><br/>
+<span class="span-highlight">decision-factor-2d:</span>	Whether the domain supports DANE (rare but strong)<br/><br/>
+</div>
+
+<div>
+<h3>3. ARC (Authenticated Received Chain) Behavior</h3>
+<span class="span-highlight">decision-factor-3a:</span>	ARC Seal presence<br/><br/>
+<span class="span-highlight">decision-factor-3b:</span>	ARC Message Signature presence<br/><br/>
+<span class="span-highlight">decision-factor-3c:</span>	ARC chain validity<br/><br/>
+<span class="span-highlight">decision-factor-3d:</span>	Whether ARC breaks across vendors<br/><br/>
+</div>
+
+<div>
+<h3>4. Reverse DNS & PTR Hygiene</h3>
+<span class="span-highlight">decision-factor-4a:</span>	PTR record validity<br/><br/>
+<span class="span-highlight">decision-factor-4b:</span>	PTR → A record consistency<br/><br/>
+<span class="span-highlight">decision-factor-4c:</span>	Whether PTR matches the sending domain<br/><br/>
+<span class="span-highlight">decision-factor-4d:</span>	Whether PTR reveals hidden vendors<br/><br/>
+</div>
+
+<div>
+<h3>5. Mail Server Reputation & Historical Behavior</h3>
+<span class="span-highlight">decision-factor-5a:</span>	Spamhaus listings<br/><br/>
+<span class="span-highlight">decision-factor-5b:</span>	Barracuda reputation<br/><br/>
+<span class="span-highlight">decision-factor-5c:</span>	Cisco Talos reputation<br/><br/>
+<span class="span-highlight">decision-factor-5d:</span>	Proofpoint reputation<br/><br/>
+<span class="span-highlight">decision-factor-5e:</span>	Microsoft SNDS signals<br/><br/>
+<span class="span-highlight">decision-factor-5f:</span>	Google Postmaster signals<br/><br/>
+</div>
+
+<div>
+<h3>6. Header Anomalies & Behavioral Deviations</h3>
+<span class="span-highlight">decision-factor-6a:</span>	X Mailer<br/><br/>
+<span class="span-highlight">decision-factor-6b:</span>	X Campaign<br/><br/>
+<span class="span-highlight">decision-factor-6c:</span>	X Vendor<br/><br/>
+<span class="span-highlight">decision-factor-6d:</span>	X Tracking ID<br/><br/>
+<span class="span-highlight">decision-factor-6e:</span>	X CRM ID<br/><br/>
+<span class="span-highlight">decision-factor-6f:</span>	X Marketing Automation<br/><br/>
+<span class="span-highlight">decision-factor-6g:</span>	X Originating IP<br/><br/>
+<span class="span-highlight">decision-factor-6h:</span>	X Sender Fingerprint<br/><br/>
+<span class="span-highlight">decision-factor-6i:</span>	Precedence: bulk / list / auto reply<br/><br/>
+<span class="span-highlight">decision-factor-6j:</span>	Return Path anomalies<br/><br/>
+<span class="span-highlight">decision-factor-6h:</span>	Reply To mismatches<br/><br/>
+</div>
+
+<div>
+<h3>7. Domain Age & Registration Metadata</h3>
+<span class="span-highlight">decision-factor-7a:</span>	Domain creation date<br/><br/>
+<span class="span-highlight">decision-factor-7b:</span>	Registrar<br/><br/>
+<span class="span-highlight">decision-factor-7c:</span>	WHOIS privacy status<br/><br/>
+<span class="span-highlight">decision-factor-7d:</span>	Organization name<br/><br/>
+<span class="span-highlight">decision-factor-7e:</span>	Historical ownership changes<br/><br/>
+<span class="span-highlight">decision-factor-7f:</span>	DNSSEC status<br/><br/>
+</div>
+
+<div>
+<h3>8. DNSSEC & Cryptographic Domain Protections</h3>
+<span class="span-highlight">decision-factor-8a:</span>	DNSSEC enabled/disabled<br/><br/>
+<span class="span-highlight">decision-factor-8b:</span>	DS record validity<br/><br/>
+<span class="span-highlight">decision-factor-8c:</span>	Key rotation frequency<br/><br/>
+</div>
+
+<div>
+<h3>9. Vendor Ecosystem Mapping (Beyond CDNs)</h3>
+<span class="span-highlight">decision-factor-9a:</span>	ESP (SendGrid, SES, Mailgun, SparkPost, etc.)<br/><br/>
+<span class="span-highlight">decision-factor-9b:</span>	CRM (Salesforce, HubSpot, Dynamics)<br/><br/>
+<span class="span-highlight">decision-factor-9c:</span>	Marketing automation (Marketo, Eloqua, Braze)<br/><br/>
+<span class="span-highlight">decision-factor-9d:</span>	Analytics (Segment, Mixpanel, Amplitude)<br/><br/>
+<span class="span-highlight">decision-factor-9e:</span>	Data brokers (Acxiom, JD Power, Experian)<br/><br/>
+<span class="span-highlight">decision-factor-9f:</span>	Enrichment vendors (Clearbit, MaterialPlus)<br/><br/>
+<span class="span-highlight">decision-factor-9g:</span>	File transfer vendors (KiteWorks, Box, Dropbox)<br/><br/>
+</div>
+
+<div>
+<h3>10. Behavioral Frequency & Cadence</h3>
+<span class="span-highlight">decision-factor-10a:</span>	How often they email you<br/><br/>
+<span class="span-highlight">decision-factor-10b:</span>	Whether frequency changes after interactions<br/><br/>
+<span class="span-highlight">decision-factor-10c:</span>	Whether they escalate tracking after engagement<br/><br/>
+<span class="span-highlight">decision-factor-10d:</span>	Whether they suppress communication after privacy requests<br/><br/>
+</div>
+
+<div>
+<h3>11. Privacy Request Handling Behavior</h3>
+<span class="span-highlight">decision-factor-11a:</span>	Do they respond?<br/><br/>
+<span class="span-highlight">decision-factor-11b:</span>	Do they block you?<br/><br/>
+<span class="span-highlight">decision-factor-11c:</span>	Do they suppress your requests?<br/><br/>
+<span class="span-highlight">decision-factor-11d:</span>	Do they escalate to legal?<br/><br/>
+<span class="span-highlight">decision-factor-11e:</span>	Do they provide disclosures?<br/><br/>
+<span class="span-highlight">decision-factor-11f:</span>	Do they comply with LIMIT, KNOW, OPT OUT, DELETE?<br/><br/>
+</div>
+
+<div>
+<h3>12. PHI/SPI Dual Use Detection</h3>
+<span class="span-highlight">decision-factor-12a:</span>	Do they receive PHI?<br/><br/>
+<span class="span-highlight">decision-factor-12b:</span>	Do they use SPI for marketing?<br/><br/>
+<span class="span-highlight">decision-factor-12c:</span>	Do they merge PHI and SPI?<br/><br/>
+<span class="span-highlight">decision-factor-12d:</span>	Do they enrich identity using clinical events?<br/><br/>
+<span class="span-highlight">decision-factor-12e:</span>	Do they share SPI with analytics vendors?<br/><br/>
+</div>
+
+<div>
+<h3>13. Forwarding & Intermediary Behavior</h3>
+<span class="span-highlight">decision-factor-13a:</span>	Forwarding loops<br/><br/>
+<span class="span-highlight">decision-factor-13b:</span>	Intermediary server<br/><br/>
+<span class="span-highlight">decision-factor-13c:</span>	Third party relays<br/><br/>
+<span class="span-highlight">decision-factor-13d:</span>	Unexpected hops<br/><br/>
+<span class="span-highlight">decision-factor-13e:</span>	Hidden enrichment vendors<br/><br/>
+</div>
+
+<div>
+<h3>14. Attachment & MIME Behavior</h3>
+<span class="span-highlight">decision-factor-14a:</span>	MIME type anomalies<br/><br/>
+<span class="span-highlight">decision-factor-14b:</span>	Multipart/alternative structure<br/><br/>
+<span class="span-highlight">decision-factor-14c:</span>	Embedded scripts<br/><br/>
+<span class="span-highlight">decision-factor-14d:</span>	Hidden tracking payloads<br/><br/>
+<span class="span-highlight">decision-factor-14e:</span>	File transfer vendor fingerprints<br/><br/>
+</div>
+
+<div>
+<h3>15. Time of Day & Behavioral Timing</h3>
+<span class="span-highlight">decision-factor-15a:</span>	Do they send at human hours?<br/><br/>
+<span class="span-highlight">decision-factor-15b:</span>	Do they send immediately after clinical events?<br/><br/>
+<span class="span-highlight">decision-factor-15c:</span>	Do they send immediately after browsing behavior?<br/><br/>
+</div>
+
+<div>
+<h3>16. Infrastructure Exposure & Security Posture</h3>
+<span class="span-highlight">decision-factor-16a:</span>	CDN providers<br/><br/>
+<span class="span-highlight">decision-factor-16b:</span>	host resolution patterns<br/><br/>
+<span class="span-highlight">decision-factor-16c:</span>	AV software versions<br/><br/>
+<span class="span-highlight">decision-factor-16d:</span>	patch levels<br/><br/>
+<span class="span-highlight">decision-factor-16e:</span>	vulnerability exposure<br/><br/>
+<span class="span-highlight">decision-factor-16f:</span>	outdated or deprecated systems<br/><br/>
+<span class="span-highlight">decision-factor-16g:</span>	insecure routing<br/><br/>
+<span class="span-highlight">decision-factor-16h:</span>	legacy mail servers<br/><br/>
+<span class="span-highlight">decision-factor-16i:</span>	unmaintained infrastructure<br/><br/>
+</div>
+
+<div>
+  <h4>Why It Matters</h4>
+<p>
+<strong>Authentication:</strong> If your message cannot prove who you are, your message will not be trusted.<br/><br/>
+<strong>Routing:</strong> If your message is routed through multiple external entities, confidentiality may be compromised.<br/><br/>
+<strong>Behavioral Intent:</strong> If your message collects information about me which I haven&apos;t consented to, 
+and isn&apos;t disclosed in response to a RIGHT TO KNOW request, your message will not be trusted.<br/><br/>
+</p>
+
+<h1>TrustedSender Decision-Outcomes</h1>
+<p>Based on these factors, I classify your message as:</p>
+<ul>
+  <li>TrustedSender — full identity assurance + accountability</li>
+  <li>SponsoredSender — invited and vouched for by a TrustedSender</li>
+  <li>GuestSender — invited by a TrustedSender for a temporary time window</li>
+  <li>VisitingSender — unregistered, identifiable Sender</li>
+  <li>UnknownSender — unregistered, anonymous Sender</li>
+  <li>UnTrustedSender — unregistered, identifiable Sender or terminated TrustedSender</li>
+  <li>Marketing Sender — no PHI/SPI content</li>
+  <li>PHI Sender — no Marketing parties</li>
+  <li>Dual Use Sender — mixes Marketing and PHI in email messages</li>
+</ul>
+
+<p>This classification determines whether your message is delivered, blocked, quarantined, escalated, 
+or used as forensic evidence.</p>
+<p>My goal is not to block communication.<br/> 
+My goal is to protect myself from non-responsive Senders that collect information about me without my consent.
+</p>
+
+<div class="footer">
+<p>
+  <strong>Email tracking notice:</strong>
+   Paubox Open Tracking adds an invisible, one pixel image at the end of an email 
+   which is used to track email opens.
+</p> 
+<p>
+<strong>Notice Regarding Automated Processing: </strong><br/>
+Direct communications and statutory privacy preferences submitted by this agent are logged automatically.<br/>
+If your unsubscribe method requires manual verification or non-standard authentication, <br/>
+please remove {{CP_sender_email}} from all emails originating from {{CTP_sender_email}}.    
+</p>
+<p style="font-size:12px; color:#666;">
+  Universal unsubscribe is available only to registered TrustedSenders.<br/> 
+  Transactional notifications are governed separately by channel-specific consent and suppression rules.<br/>
+  Blocking an unwanted sender does not alter subscription status. 
+  TrustedSenders <a href="trustedsender-unsubscribe-form.html">unsubscribe here</a>.
+</p>
+    
+<p style="margin:0;">
+    {{CP_sender_email_display_name}} &middot; This message was sent from {{CP_sender_email}}.
+</p>
+</div>
+
+</body>
+</html>
+    

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Notice of Formal Service & Courtesy Copy</title>
+<meta name="classification" content="legal, proof-of-service, privacy rights, complaint, notification">
+<meta name="priority" content="high">
+<meta name="intent" content="notify at-risk stakeholders">
+<meta name="audience" content="human-and-ai">
+<meta name="keywords" content="external counsel, USPS Certified Mail, registered agent of record, identity enrichment evidence, downstream data sharing, vendor behavior, forensic header analysis, zero-trust sender classification, PHI/SPI pipeline separation">
+
+<!--  RFC 5322 requirements -->
+<meta name="From" content="{{CP_sender_prior_email}}">
+<meta name="To" content="{{IP_contact_email}}">
+<meta name="Date" content="{{M_sent_date}}">
+<meta name="Message-ID" content="{{M_message_uuid}}">
+<!--  Custom TrustedSender headers -->
+<meta name="x-origin-domain" content="{{CP_domain}}">
+<meta name="x-sender-system" content="{{CP_org_name}}">
+<meta name="x-template-id" content="{{M_message_type}}">
+<meta name="x-trusted-sender-tag" content="{{CP_trusted_sender_tag}}">
+
+<style>
+  body{margin:20px 10px 20px 10px; padding:0;background:#f4f7fb;font-family:Arial,Helvetica,sans-serif;}
+  .wrap{max-width:600px;margin:24px auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.10);}
+  .header{background:#0247DC;padding:28px 32px;color:#ffffff;}
+  .header h1{margin:0;font-size:22px;font-weight:700;line-height:1.3;}
+  .header p{margin:6px 0 0;font-size:14px;opacity:0.88;}
+  .body{padding:28px 32px;}
+  .row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f0f2f5;}
+  .row:last-child{border-bottom:none;}
+  .lbl{font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;width:110px;flex-shrink:0;padding-top:1px;}
+  .val{font-size:14px;color:#111827;line-height:1.5;}
+  .btn{display:inline-block;padding:12px 22px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;margin-top:20px;}
+  .btn-primary{background:#0247DC;color:#ffffff;}
+  .footer{padding:16px 32px;background:#f9fafb;border-top:1px solid #e5e7eb;font-size:12px;color:#9ca3af;}
+  p{font-size:16px;color:#374151;line-height:1.5;margin:0 0 12px;}
+  .alert{background:#eff6ff;border-left:3px solid #0247DC;padding:12px 16px;border-radius:4px;font-size:14px;color:#1e40af;margin-bottom:16px;}
+  .span-highlight{background:yellow;border:3px solid #0247DC;padding:4px 4px 4px 4px;border-radius:4px;}
+</style>
+</head>
+
+
+<body>
+<div>
+<p>
+<span>From:&nbsp;&nbsp;{{CP_sender_email_display_name}} at {{CP_sender_email}}</span><br/> 
+<span>Location:&nbsp;{{CP_location}}</span><br/> 
+<span>Date:&nbsp;&nbsp;{{M_sent_date}}</span>
+<span>To:&nbsp;&nbsp;&nbsp;{{IP_sender_email}}</span> 
+<span>CC:&nbsp;&nbsp;&nbsp;{{CTP_sender_email}}</span> 
+<span>Subject:&nbsp;Notice of Formal Service On Behalf Of {{IP_OBO}}</span>
+</p>
+<h1>Notice of Formal Service On Behalf Of {{IP_OBO}}</h1>
+</div>
+
+<div>
+<p>
+Submitted by:&nbsp;&nbsp;&nbsp;{{CP_OBO}}<br/>
+Authorized Agent: &nbsp;{{CP_org_name}}<br/> 
+Secure Email: &nbsp;&nbsp;&nbsp;{{CP_sender_email}}
+</p>
+</div>
+
+<div>
+<p><strong>To Outside Counsel Representing {{CTP_org_name}}:</strong><br/>
+Please be advised that your client, {{CTP_org_name}}, 
+is either unwilling or unable to accept secure electronic communications regarding a matter.
+</p>
+
+<p>
+<strong>Service Details:</strong><br/>
+&nbsp;&nbsp;&nbsp;Recipient: {{CTP_org_name}} c/o {{IP_org_name}}<br/>
+&nbsp;&nbsp;&nbsp;Date Sent: {{M_sent_date}}
+</p>
+
+<p>
+<strong>Summary of Notice:</strong><br/>
+</p>
+
+<p>
+A preservation directive regarding all associated data records, system logs, and consent receipts 
+has been served concurrently.
+</p>
+</div>
+
+<div>
+<p><strong>Purpose of this Email:</strong></p> 
+<ol>
+    <li>To provide your office with an electronic courtesy copy of the served notice (attached).</li>
+    <li>To establish a reliable electronic communication channel for this matter,<br/>
+     as prior electronic submissions to standard consumer endpoints were bounced or filtered at the gateway level.</li>
+     <li>To disseminate this information to any person or functional department that participates in,
+         or has a legitimate stake in this matter.
+     </li>
+</ol>
+<p>
+If your office is authorized to accept electronic communications or service on behalf of {{CTP_org_name}}
+for this matter, please acknowledge receipt of this email.
+</p>    
+</div>
+
+<div>
+<p>
+<blockquote>
+    <em>"Under California privacy law and Article I, Section 1 of the California Constitution, 
+        Sensitive Personal Information (SPI)
+         cannot be transferred to undisclosed third-party vendors without consumer notice and consent."</em>
+  </blockquote>
+</p>
+
+<div>
+<p>
+I am submitting this notification to you as external counsel because your client, {{CTP_org_name}}, 
+does not offer a secure channel for me to communicate with them.<br/>
+These failures include:
+</p>
+</div>
+
+<div>
+{{M_message_content}}
+</div>
+
+<p>To resolve this, {{CTP_org_name}} must either:</p>
+<ol>
+    <li><strong>Provide a written DPA signed by a corporate executive responsible for the issue</li>
+    <li><strong>Become a TrustedSender so I can whitelist all communications originating from every domain
+    {{CTP_org_name}} uses to deliver to me.</li>
+</ol>
+* Currently, all email from {{CTP_org_name}} is being filtered or blocked by my security gateway, 
+which I may need an explaination for in the event my organization is audited.
+</div>
+
+<div class="footer">
+<p>
+<strong>Notice Regarding Automated Processing: </strong><br/>
+Direct communications and statutory privacy preferences submitted by this agent are logged automatically.<br/>
+If your unsubscribe method requires manual verification or non-standard authentication, <br/>
+please remove {{CP_OBO}} from all emails originating from {{IP_sender_email}}.    
+</p>
+    
+<p style="margin:0;">
+    This message was sent securely from {{CP_OBO}}&apos;s authorized agent, {{CP_org_name}}.
+</p>
+</div>
+
+</body>
+</html>
