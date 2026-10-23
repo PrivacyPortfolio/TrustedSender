@@ -23,29 +23,29 @@ which my agents can access through the ToolRegistry.
 A "Sender" is a unique email address used by an individual or organization to send email.
 A "Recipient" decides "whether to let this email in".
 
-In any exchange, you might be the "Sender" or you might be the "Recipient".
-It doesn't matter which side you are on or what role you play.
-Both sides have decisions to make:
-Do I send this email? Who should I send it to? Where should I send it?
+In any exchange, you might be the "Sender" or you might be the "Recipient".  
+It doesn't matter which side you are on or what role you play.  
+Both sides have decisions to make:  
+Do I send this email? Who should I send it to? Where should I send it?  
 Who sent me this email? What is it about? Do I need to do something?
 
 Go to <a href="https://www.privacyportfolio.com/trustedsender-registration.html">Trusted Sender Preferences</a>.
 
 "This form gives you or your organization a simple, secure way to share the information my Yo‑AI agents need to interact with your automated processes."
 
-The form itself can be used by humans manually,
+The form itself can be used by humans manually,  
 or by AI Agents using the
 <a href="trustedsender-preferences-api.yaml">trustedsender-preferences-api.yaml</a>. 
 
 This API wraps operations in other standalone modules and APIs for convenience and security,
 so agents know their authorization scope before executing tasks.
 
-This allows you to evaluate whether I am providing the same instructions to AI Agents that I also give to humans -- even if they use different methods to acheive the same goal.
+This allows you to evaluate whether I am providing the same instructions to AI Agents that I also give to humans -- even if they use different methods to achieve the same goal.
 
 If you weren't expecting to ALLOW AI AGENTS to interact with YOUR PROCESSES,
 go to https://www.privacyportfolio.com/unsubscribe.html.
 
-One Decision-Factor I use is: Can I reverse or undo my decision or action?
+One Decision-Factor I use is: Can I reverse or undo my decision or action?  
 I could sign up, select my preferences, try it once or twice, and unsubscribe to answer this question. 
 (https://www.privacyportfolio.com/trustedsender-unsubscribe-form.html)
 
@@ -53,8 +53,8 @@ I could sign up, select my preferences, try it once or twice, and unsubscribe to
 
 
 **WHAT I CAN DO WITH TrustedSender**  
-I can migrate Senders from my three legacy email providers to my new email provider.
-I only want Senders that fit my own custom criteria but I'm also willing to help them honor my preferences.
+I can migrate Senders from my three legacy email providers to my new email provider.  
+I only want Senders that fit my own custom criteria but I'm also willing to help them honor my preferences.  
 (TrustedSender_Decision_Factors.html is what I email to them.)
 
 Without allowing ANY agents access to my legacy inboxes where they could use my credentials to impersonate me, I can export my legacy mailbox archives:
@@ -94,39 +94,39 @@ noreply_address_count
 user_ever_sent_to_this_address
 migration_candidate_bucket
 
-The total sum of MessageCount is 41,730 messages.
-The total sum of unique Senders is 4,331.
+The total sum of MessageCount is 41,730 messages.  
+The total sum of unique Senders is 4,331.  
 Generally, the more email I get from Senders, the less important it is to me.
 
-The total sum of last_seen greater than 2 years is 3,765.
+The total sum of last_seen greater than 2 years is 3,765.  
 Obviously I probably don't want to invite Senders I haven't received messages from lately.
 
-Then there are the Senders who DON'T HAVE unsubscribe links in their emails:
+Then there are the Senders who DON'T HAVE unsubscribe links in their emails:  
 The total sum of Senders whose list_unsubscribe_present_count=0 is 2,421.
 
 Finally, there are Senders who DON'T WANT TO TALK TO ME. That's what I say when 
 noreply_address_count = 100% of a Sender's email messages.
 
 Those are the most useful Decision-Factors used to generate a streamlined "Invitation List".
-Others I use are: 
+Others I use are:  
 reply_to_mismatch_count which indicates IMPERSONATION (authorized AND unauthorized)
 and
 145 suspected personal emails from 6 domains: gmail.com, outlook.com, yahoo.com, icloud.com, hotmail.com, protonmail.com.
 
-As for all remaining Senders who ARE FILTERED OUT, they are STILL IN MY ARCHIVES.
+As for all remaining Senders who ARE FILTERED OUT, they are STILL IN MY ARCHIVES.  
 My agents that need to query the archives, can still do so, provided they have access permissions to them.
 
 
 **Inviting TrustedSenders**  
-I use email send templates I publish in the Paubox Email API to send email programmatically.
-/Migration/ChangeOfAddress_template.html is a Change of Address Notification Template sent from legacy email providers.
-These are SENT FROM my legacy mailboxes, which the Senders EXPECT. (They can identify me by my email address they have on record.)
+I use email send templates I publish in the Paubox Email API to send email programmatically.  
+/Migration/ChangeOfAddress_template.html is a Change of Address Notification Template sent from legacy email providers.  
+These are SENT FROM my legacy mailboxes, which the Senders EXPECT. (They can identify me by my email address they have on record.)  
 I do CC: craig-erickson@yo-ai.ai so I know which Senders I invited.
 
-Then I wait to see who responds.
-Sometimes Senders reply directly to my invitation email at my legacy email address, my new address, or both.
-Often, Senders just change my email address (at the source -- wherever it is stored), 
-and continue sending me promotional emails, even from subscriptions I never consented to receive.
+Then I wait to see who responds.  
+Sometimes Senders reply directly to my invitation email at my legacy email address, my new address, or both.  
+Often, Senders just change my email address (at the source -- wherever it is stored),   
+and continue sending me promotional emails, even from subscriptions I never consented to receive.  
 Rarely, will a Sender (or its agents) use the TrustedSender Registration form.
 
 "I invited you to change my address. I did not invite you to fill out a form or promise me ANYTHING."
@@ -140,11 +140,13 @@ or any other information about its communications associated with an individual 
 Any Sender that is NOT REGISTERED as a TrustedSender IS A GUEST of the individual or organization that invited them. In other words, an UNREGISTERED Sender's alternative contact is BY DEFAULT,
 the TrustedSender that invited them. (Only TrustedSenders can invite other Senders.)
 
-TrustedSenders are tagged [TrustedSender] in all incoming emails to yo-ai.ai, which is prepended to the Subject line automatically by my Paubox Email Gateway. 
-This speeds up processing by reducing friction, but every email is still evaluated EVEN FOR TrustedSenders,
-which are assigned "trust-levels" that increment or decrement a number greater or less than zero.
+TrustedSenders are tagged [TrustedSender] in all incoming emails to yo-ai.ai, which is prepended to the Subject line automatically by my Paubox Email Gateway.  
+This speeds up processing by reducing friction, but every email is still evaluated EVEN FOR TrustedSenders,  
+which are assigned "trust-levels" that increment or decrement a number greater or less than zero.  
 (View my <a href="">Door-Keeper Extended Agent Card</a>.)
+
 trustedsender_request_response_template.html is used to automatically respond to UntrustedSenders from yo-ai.ai. The opening paragraph reads:
+
 <p>
 Your message isn't singled out. Everything sent to this inbox is quarantined by default — deny-all, no exceptions.<br/>
 When we recieve messages from individuals or organizations at this email domain,<br/>
