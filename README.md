@@ -28,7 +28,7 @@
             unsubscribe.html 
 		- website footer link serving a static page explaining unsubscribe options for ANYONE.
 	/subscription
-		Template_Placeholder_DataDictionary.md 
+		Template_Placeholder_DataDictionary.md
                 - This data dictionary maintains placeholders for Paubox Dynamic Email Templates
 	/templates
 		TrustedSender_Decision-Factors_Template.html 
@@ -47,9 +47,9 @@
 			<h3>Re: {{CP_OBO}}'s scheduled appointment</h3>
     /code
     	/EmailAnalysis
-			mbox_sender_analysis.py
-				- Parses exported mbox files and builds a sender_report.csv,
-			  	used as decision-factors for sending ChangeOfAddress notifications.
+                mbox_sender_analysis.py
+					- Parses exported mbox files and builds a sender_report.csv,
+			  		used as decision-factors for sending ChangeOfAddress notifications.
 			sender_org_inference.py
 				- Uses a sender_report.csv from mbox_sender_analysis.py to produce a
 			  	suggested organization name and an "is this domain the actual
