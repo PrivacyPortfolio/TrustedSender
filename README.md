@@ -132,7 +132,7 @@
 		/Voice
           		place_voice_call.py
         		update_caller_blocking.py
-		/TrustedSenderPreferences
+    	/TrustedSenderPreferences
 			trustedsender_preferences_api.yaml
 				- my API that wraps: 
 				  Paubox Marketing API, Paubox Email API, Paubox Forms API, RingCentral API, Yo-API.
