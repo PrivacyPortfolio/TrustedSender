@@ -45,32 +45,32 @@
 			- sent to medical providers when a new event is generated for a patient.
 			<h3>{{CP_OBO}}'s lab results are ready</h3> or 
 			<h3>Re: {{CP_OBO}}'s scheduled appointment</h3>
-/code
-	/EmailAnalysis
-		mbox_sender_analysis.py
-			- Parses exported mbox files and builds a sender_report.csv,
-			  used as decision-factors for sending ChangeOfAddress notifications.
-		sender_org_inference.py
-			- Uses a sender_report.csv from mbox_sender_analysis.py to produce a
-			  suggested organization name and an "is this domain the actual
-			  organization, or just an intermediary/ESP relaying on their behalf"
-			  guess for each sender. Every row is a SUGGESTION with a
-			  confidence flag, not a final answer.
-		WorkMailForwarder_lambda.py
-			- Pulls the raw MIME message from WorkMail
-			- Parses subject, sender, and body
-			- Sends a new email through Paubox to the solicitor-general
-			- Preserves HTML formatting
-			- Works with encrypted inbound mail (Paubox handles encryption on send)
-	/MailboxMigration
-		eml_dir_to_mbox.py
-			- Converts a directory of individual .eml files into a single mbox file
-		imap_to_mbox.py
-			- Cross-platform (Windows/Mac/Linux) IMAP export to mbox
-	/Paubox
-		/EmailAPI
-			add_attachments.py
-			download_attachment.py
+    /code
+    	/EmailAnalysis
+			mbox_sender_analysis.py
+				- Parses exported mbox files and builds a sender_report.csv,
+			  	used as decision-factors for sending ChangeOfAddress notifications.
+			sender_org_inference.py
+				- Uses a sender_report.csv from mbox_sender_analysis.py to produce a
+			  	suggested organization name and an "is this domain the actual
+			  	organization, or just an intermediary/ESP relaying on their behalf"
+			  	guess for each sender. Every row is a SUGGESTION with a
+			  	confidence flag, not a final answer.
+			WorkMailForwarder_lambda.py
+				- Pulls the raw MIME message from WorkMail
+				- Parses subject, sender, and body
+				- Sends a new email through Paubox to the solicitor-general
+				- Preserves HTML formatting
+				- Works with encrypted inbound mail (Paubox handles encryption on send)
+    	/MailboxMigration
+			eml_dir_to_mbox.py
+				- Converts a directory of individual .eml files into a single mbox file
+			imap_to_mbox.py
+				- Cross-platform (Windows/Mac/Linux) IMAP export to mbox
+    	/Paubox
+    		/EmailAPI
+				add_attachments.py
+				download_attachment.py
 			get_email_disposition.py
 			get_email_template.py
 			get_received_email.py
