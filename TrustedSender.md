@@ -215,7 +215,7 @@ Or maybe I made a mistake -- and sent the wrong information to the wrong person!
 </p>
 </pre>
 
-I use a <a href="Template_Placeholder_DataDictionary.md">Template_Placeholder_DataDictionary.md for:  
+I use a Template_Placeholder_DataDictionary.md for:  
  Paubox Email API Templates  
  Paubox Marketing API Templates  
  Paubox Forms  
