@@ -69,8 +69,8 @@
 				- Cross-platform (Windows/Mac/Linux) IMAP export to mbox
     	/Paubox
     		/EmailAPI
-				add_attachments.py
-				download_attachment.py
+			add_attachments.py
+			download_attachment.py
 			get_email_disposition.py
 			get_email_template.py
 			get_received_email.py
@@ -79,7 +79,7 @@
    			list_receiving_domains.py
    			send_email_message.py
    			send_templated_email.py
-       			update_email_template.py
+			update_email_template.py
 			/FormsAPI
 				export_submissions_as_csv.py
 				export_submission_as_csv.py
