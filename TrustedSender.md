@@ -30,11 +30,13 @@ Do I send this email? Who should I send it to? Where should I send it?
 Who sent me this email? What is it about? Do I need to do something?
 
 Go to <a href="https://www.privacyportfolio.com/trustedsender-registration.html">Trusted Sender Preferences</a>.
+
 "This form gives you or your organization a simple, secure way to share the information my Yo‑AI agents need to interact with your automated processes."
 
 The form itself can be used by humans manually,
 or by AI Agents using the
 <a href="trustedsender-preferences-api.yaml">trustedsender-preferences-api.yaml</a>. 
+
 This API wraps operations in other standalone modules and APIs for convenience and security,
 so agents know their authorization scope before executing tasks.
 
