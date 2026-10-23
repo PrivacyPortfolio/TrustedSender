@@ -5,7 +5,6 @@
         - TrustedSender Repository File Structure
     TrustedSender.md
         - Explainer document
-
     /artifacts
         /forms
             GeneralUnsubscribe_paubox_form.html
@@ -15,7 +14,6 @@
                   (UniversalUnsubscribe)
             TrustedSender_Registration_paubox_form.html
             UniversalUnsubscribe_paubox_form.html
-
         /landing_pages
 			trusted-sender.html 
 				- Landing page for Senders who want to learn more about registering as a TrustedSender.
@@ -27,36 +25,26 @@
 				- aka "Trusted Sender Preferences"
 				-> related to trustedsender-preferences-api.yaml
 				-> Static webpage that explains the TrustedSender Program and registers them via a Paubox form if desired
-		unsubscribe.html 
-			- website footer link serving a static page explaining unsubscribe options for ANYONE.
-	/private/
-		<!-- real content NOT PUBLIC -->
-		PrivacyPortfolio
-			tree-files.txt 
-				- used as metadata for representing sensitive content that doesn't belong in a public repo.
-	/subscription
-		Template_Placeholder_DataDictionary.md 
-			- This data dictionary maintains placeholders for Paubox Dynamic Email Templates
-	/templates
-		TrustedSender_Decision-Factors_Template.html 
-			- explains how automated decisions are made about Senders.
-
-		External_Counsel_Notification_template.html
-			- sent by proxy to external law firms when Organizations block or ignore communications 	
-
-		trustedsender_request_response_template.html
-			- sent to UnTrustedSenders at yo-ai.ai 
-
-		sender_email_analysis_template.html
-			- transparent disclosure of why a message was quarantined, triggered on quarantine, via Lambda
-
-		CCPA_LIMIT_Request_Template.html
-			- sent to Intermediary Parties when First-Party blocks or ignores communications
-
-		Clinical_Lab_Results_template.html
-			- sent to medical providers when a new event is generated for a patient.
-			<h3>{{CP_OBO}}'s lab results are ready</h3> or 
-			<h3>Re: {{CP_OBO}}'s scheduled appointment</h3>
+			unsubscribe.html 
+				- website footer link serving a static page explaining unsubscribe options for ANYONE.
+		/subscription
+			Template_Placeholder_DataDictionary.md 
+				- This data dictionary maintains placeholders for Paubox Dynamic Email Templates
+		/templates
+			TrustedSender_Decision-Factors_Template.html 
+				- explains how automated decisions are made about Senders.
+			External_Counsel_Notification_template.html
+				- sent by proxy to external law firms when Organizations block or ignore communications 	
+			trustedsender_request_response_template.html
+				- sent to UnTrustedSenders at yo-ai.ai 
+			sender_email_analysis_template.html
+				- transparent disclosure of why a message was quarantined, triggered on quarantine, via Lambda
+			CCPA_LIMIT_Request_Template.html
+				- sent to Intermediary Parties when First-Party blocks or ignores communications
+			Clinical_Lab_Results_template.html
+				- sent to medical providers when a new event is generated for a patient.
+				<h3>{{CP_OBO}}'s lab results are ready</h3> or 
+				<h3>Re: {{CP_OBO}}'s scheduled appointment</h3>
 	/code
 		/EmailAnalysis
 			mbox_sender_analysis.py
@@ -125,7 +113,6 @@
                 unsubscribe_subscribers.py
                 unsubscribe_subscription.py
                 update_subscriber.py
-
 		/RingCentral
 			delete_call_log.py
    			get_call_logs.py
@@ -145,7 +132,6 @@
 			/Voice
           		place_voice_call.py
         		update_caller_blocking.py
-
 		/TrustedSenderPreferences
 			trustedsender_preferences_api.yaml
 				- my API that wraps: 
@@ -159,4 +145,9 @@
 				- TrustedSender action Lambda for API Gateway routes.
 	/config
 		paubox.env.txt (stub)
+	/private
+		<!-- real content NOT PUBLIC -->
+		PrivacyPortfolio
+			tree-files.txt 
+				- used as metadata for representing sensitive content that doesn't belong in a public repo.
 ```
