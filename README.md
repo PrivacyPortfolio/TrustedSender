@@ -21,11 +21,11 @@
                 PrivacyPortfolio logo lands here:
                 https://www.yo-ai.ai/trusted-sender.html
                 This page assumes the Sender is Untrusted, and sends no-reply emails to PrivacyPortfolio, Yo-ai, or Craig Erickson with or without my consent.
-			trustedsender-registration.html 
+            trustedsender-registration.html 
                 - aka "Trusted Sender Preferences"
                 -> related to trustedsender-preferences-api.yaml
                 -> Static webpage that explains the TrustedSender Program and registers them via a Paubox form if desired
-			unsubscribe.html 
+            unsubscribe.html 
 		- website footer link serving a static page explaining unsubscribe options for ANYONE.
 	/subscription
 		Template_Placeholder_DataDictionary.md 
