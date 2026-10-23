@@ -15,18 +15,18 @@
             TrustedSender_Registration_paubox_form.html
             UniversalUnsubscribe_paubox_form.html
         /landing_pages
-	trusted-sender.html
-		- Landing page for Senders who want to learn more about registering as a TrustedSender.
-		-> Senders who receive a link to the Secure Notification Center AND click on the
+		trusted-sender.html
+			- Landing page for Senders who want to learn more about registering as a TrustedSender.
+			-> Senders who receive a link to the Secure Notification Center AND click on the
 			PrivacyPortfolio logo lands here:
 			https://www.yo-ai.ai/trusted-sender.html
 			This page assumes the Sender is Untrusted, and sends no-reply emails to PrivacyPortfolio, Yo-ai, or Craig Erickson with or without my consent.
-	trustedsender-registration.html 
+		trustedsender-registration.html 
 			- aka "Trusted Sender Preferences"
 				-> related to trustedsender-preferences-api.yaml
 				-> Static webpage that explains the TrustedSender Program and registers them via a Paubox form if desired
-	unsubscribe.html 
-		- website footer link serving a static page explaining unsubscribe options for ANYONE.
+		unsubscribe.html 
+			- website footer link serving a static page explaining unsubscribe options for ANYONE.
 		/subscription
 			Template_Placeholder_DataDictionary.md 
 				- This data dictionary maintains placeholders for Paubox Dynamic Email Templates
