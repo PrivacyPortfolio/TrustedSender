@@ -15,7 +15,7 @@
             TrustedSender_Registration_paubox_form.html
             UniversalUnsubscribe_paubox_form.html
         /landing_pages
-			trusted-sender.html 
+        	trusted-sender.html 
 				- Landing page for Senders who want to learn more about registering as a TrustedSender.
 				-> Senders who receive a link to the Secure Notification Center AND click on the
 					PrivacyPortfolio logo lands here:
