@@ -21,7 +21,7 @@
                 PrivacyPortfolio logo lands here:
                 https://www.yo-ai.ai/trusted-sender.html
                 This page assumes the Sender is Untrusted, and sends no-reply emails to PrivacyPortfolio, Yo-ai, or Craig Erickson with or without my consent.
-            trustedsender-registration.html 
+            trustedsender-registration.html
                 - aka "Trusted Sender Preferences"
                 -> related to trustedsender-preferences-api.yaml
                 -> Static webpage that explains the TrustedSender Program and registers them via a Paubox form if desired
@@ -29,7 +29,7 @@
 		- website footer link serving a static page explaining unsubscribe options for ANYONE.
 	/subscription
 		Template_Placeholder_DataDictionary.md 
-			- This data dictionary maintains placeholders for Paubox Dynamic Email Templates
+                - This data dictionary maintains placeholders for Paubox Dynamic Email Templates
 	/templates
 		TrustedSender_Decision-Factors_Template.html 
 			- explains how automated decisions are made about Senders.
@@ -71,9 +71,9 @@
 		/EmailAPI
 			add_attachments.py
 			download_attachment.py
-       		get_email_disposition.py
-           	get_email_template.py
-   			get_received_email.py
+			get_email_disposition.py
+			get_email_template.py
+			get_received_email.py
    			list_email_attachments.py
    			list_received_emails.py
    			list_receiving_domains.py
