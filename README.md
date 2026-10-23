@@ -27,10 +27,10 @@
 				-> Static webpage that explains the TrustedSender Program and registers them via a Paubox form if desired
 		unsubscribe.html 
 			- website footer link serving a static page explaining unsubscribe options for ANYONE.
-		/subscription
-			Template_Placeholder_DataDictionary.md 
-				- This data dictionary maintains placeholders for Paubox Dynamic Email Templates
-		/templates
+	/subscription
+		Template_Placeholder_DataDictionary.md 
+			- This data dictionary maintains placeholders for Paubox Dynamic Email Templates
+	/templates
 			TrustedSender_Decision-Factors_Template.html 
 				- explains how automated decisions are made about Senders.
 			External_Counsel_Notification_template.html
