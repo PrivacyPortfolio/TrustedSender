@@ -133,16 +133,16 @@
           		place_voice_call.py
         		update_caller_blocking.py
     	/TrustedSenderPreferences
-			trustedsender_preferences_api.yaml
-				- my API that wraps: 
-				  Paubox Marketing API, Paubox Email API, Paubox Forms API, RingCentral API, Yo-API.
-			/AccessControls
-				tool_registry.py  (data_steward_tool_registry.py used as stub example)
-					- which tools and configurations agents can use
-			/Monitoring
-			/Registration
-				unsubscribe_lambda.py
-				- TrustedSender action Lambda for API Gateway routes.
+		trustedsender_preferences_api.yaml
+			- my API that wraps: 
+			  Paubox Marketing API, Paubox Email API, Paubox Forms API, RingCentral API, Yo-API.
+		/AccessControls
+			tool_registry.py  (data_steward_tool_registry.py used as stub example)
+				- which tools and configurations agents can use
+		/Monitoring
+		/Registration
+			unsubscribe_lambda.py
+			- TrustedSender action Lambda for API Gateway routes.
 	/config
 		paubox.env.txt (stub)
 	/private
