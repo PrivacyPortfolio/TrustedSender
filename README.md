@@ -117,19 +117,19 @@
 			delete_call_log.py
    			get_call_logs.py
    			update_message_store_configuration.py
-			/AI
-				analyze_sentiment.py
+		/AI
+			analyze_sentiment.py
      			detect_intent.py
      			extract_topics.py
       			keyword_spotting.py
       			transcribe_call.py
-			/SMS
+		/SMS
       			delete_sms_message.py
       			get_sms_messages.py
      			send_sms_message.py
       			subscribe_sms_events.py
       			unsubscribe_sms_events.py
-			/Voice
+		/Voice
           		place_voice_call.py
         		update_caller_blocking.py
 		/TrustedSenderPreferences
