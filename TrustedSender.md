@@ -159,48 +159,50 @@ I send it to every UntrustedSender discovered in my inbox whether they were invi
 The primary control the first paragraph refers to is the Paubox "Inbound Security" feature,
 which natively quarantines email without the required encryption protocols, sensitive personal information in its content, or other customized Data Loss Prevention (DLP) rules.
 
-I quarantine EVERY EMAIL BY DEFAULT, AFTER ALLOWING white-listed TrustedSenders IN.
+I quarantine EVERY EMAIL BY DEFAULT, AFTER ALLOWING white-listed TrustedSenders IN.  
 Paubox sends Quarantine Reports and DLP Notifications to my administrative email address at
-craig-erickson@privacyportfolio.com, which is NOT secured by Paubox. 
-These emails are used to trigger a lambda function that:
-parses the emails for quarantined messages,
-looks up the message-id,
-retrieves the email from quarantine,
-saves the original email and header.
-appends it to the Yo-AI platform log,
-and sends it back to Yo-AI as a forwarded message from craig-erickson@privacyportfolio.com,
+craig-erickson@privacyportfolio.com, which is NOT secured by Paubox.  
+These emails are used to trigger a lambda function that:  
+parses the emails for quarantined messages,  
+looks up the message-id,  
+retrieves the email from quarantine,  
+saves the original email and header,  
+appends it to the Yo-AI platform log,  
+and sends it back to Yo-AI as a forwarded message from craig-erickson@privacyportfolio.com,  
 which bypasses my default quarantine rule because I am registered as a TrustedSender.
 
 The next step (before sending the trustedsender_request_response) 
 is letting my Yo-AI agents analyze each downloaded email message.
 
-Because I want to CULTIVATE TrustedSenders, 
+Because I want to CULTIVATE TrustedSenders,  
 I share my analysis with them so they have the opportunity to decide what they want to do.
-The title of (SenderEmailAnalysis.html) reads:
+
+The title of (SenderEmailAnalysis.html) reads:  
 <strong>What your email tells me about you as a Sender</strong>
 
-SenderEmailAnalysis.html contains "findings": 
-some of them are facts, 
-a few of them may be actual test results,
-but many of them are inferences made by AI, 
+SenderEmailAnalysis.html contains "findings":   
+some of them are facts,  
+a few of them may be actual test results,  
+but many of them are inferences made by AI,  
 and some are human interpretations - often influenced by emotional responses.
 
-Just to recap this section,
-a Sender email inbound to yo-ai.ai is quarantined and analyzed,
-but INSTEAD OF directly replying from inside my 'live inbox',
-I send an out-of-band response from the Paubox Email API
-so I can track opens, blocks, reads, etc.
+Just to recap this section,  
+a Sender email inbound to yo-ai.ai is quarantined and analyzed,  
+but INSTEAD OF directly replying from inside my 'live inbox',  
+I send an out-of-band response from the Paubox Email API  
+so I can track opens, blocks, reads, etc.  
 And so can my agents.
+
 No decision is made at this point about whether to ALLOW, BLOCK, or CULTIVATE the Sender.
 
 
 **Cultivating TrustedSenders**  
-Trust isn't given -- it's earned.
-I need to continuously earn the trust of my TrustedSenders,
+Trust isn't given -- it's earned.  
+I need to continuously earn the trust of my TrustedSenders,  
 based on my last email to them -- the one they're likely to remember!
 
-Those who registered as TrustedSenders are provided with instructions and tools to conduct their own assessment of me and my agents. 
-Perhaps the Decision-Factors I used to make a Decision-Outcome are inaccurate.
+Those who registered as TrustedSenders are provided with instructions and tools to conduct their own assessment of me and my agents.  
+Perhaps the Decision-Factors I used to make a Decision-Outcome are inaccurate.  
 Or maybe I made a mistake -- and sent the wrong information to the wrong person!
 
 <pre>
@@ -213,61 +215,61 @@ Or maybe I made a mistake -- and sent the wrong information to the wrong person!
 </p>
 </pre>
 
-I use a <a href="Template_Placeholder_DataDictionary.md">Template_Placeholder_DataDictionary.md for:
- Paubox Email API Templates
- Paubox Marketing API Templates
- Paubox Forms
+I use a <a href="Template_Placeholder_DataDictionary.md">Template_Placeholder_DataDictionary.md for:  
+ Paubox Email API Templates  
+ Paubox Marketing API Templates  
+ Paubox Forms  
 This helps me keep subscriber information secure and accurate.
 
-Too many placeholders can also be an issue:
+Too many placeholders can also be an issue:  
 <div>
     <h3>{{CP_OBO}}'s lab results are ready</h3>
 {{M_message_content}}
-</div>
+</div>  
 This solution uses only two placeholders.
 
-TrustedSenders are subscribers who consented to entrust me and my agents with their data.
+TrustedSenders are subscribers who consented to entrust me and my agents with their data.  
 They are identifiable by mapping the 
-<meta name="x-recipient-id" content="{{CTP_sender_id}}"> in the email header
-to the 
-subscriber_uuid in Paubox
-to minimize exposing personally-identifiable information in the templates, 
-in the Paubox platform, 
+<meta name="x-recipient-id" content="{{CTP_sender_id}}"> in the email header  
+to the subscriber_uuid in Paubox  
+to minimize exposing personally-identifiable information in the templates,  
+in the Paubox platform,  
 or in your Contacts -- the first place where hackers and AI Agents look.
 
 This mapping is confidential, secure, and subject to change in real-time!
 
-Managing subscriptions and subscribers is the second level of the TrustedSender Program.
+Managing subscriptions and subscribers is the second level of the TrustedSender Program.  
 The first level is email security.
 
 
 **Protecting TrustedSenders**  
-TrustedSenders can subscribe to filtered kafka topics of events from the Yo-AI Platform log,
-so they can see all communication activity on MY SIDE,
+TrustedSenders can subscribe to filtered kafka topics of events from the Yo-AI Platform log,  
+so they can see all communication activity on MY SIDE,  
 and compare with logs ON THEIR SIDE to ESTABLISH FACTS.
 
-TrustedSenders can configure their communication preferences,
+TrustedSenders can configure their communication preferences,  
 to receive CONSOLIDATED REPORTS on ALL Senders associated with an Organization or Individual.
 
-TrustedSenders can ALSO configure their communication preferences,
+TrustedSenders can ALSO configure their communication preferences,  
 to include voice and SMS text messages, chats, videos, and meetings.
+
 I use RingCentral for these other communication channels, which generates and sends email summaries
 to my inbox at yo-ai.ai where it is processed through the Paubox email gateway like any other email message:
 saved, logged, and analyzed.
+
 Paubox also handles attachments, applying its native security capabilities to determine if they are malformed, malicious, or contains sensitive personal information.
 
-TrustedSenders can configure their communication preferences UNIVERSALLY -- meaning they can unsubscribe
-TO ALL COMMUNICATION CHANNELS.
+TrustedSenders can configure their communication preferences UNIVERSALLY -- meaning they can unsubscribe TO ALL COMMUNICATION CHANNELS.
 
 
 **Building Your Own TrustedSender Program**  
-I built my TrustedSender Program using MY preferred tools.
-While there's nothing stopping you from running your own Yo-AI Assurance Platform, Paubox Email Gateway, RingCentral tenant, or AWS cloud environment -- you SHOULD be able to implement a TrustedSender Program with the TOOLS YOU PREFER.
-(I haven't tried it yet, but I'm available to assist you.)
+I built my TrustedSender Program using MY preferred tools.  
+While there's nothing stopping you from running your own Yo-AI Assurance Platform, Paubox Email Gateway, RingCentral tenant, or AWS cloud environment -- you SHOULD be able to implement a TrustedSender Program with the TOOLS YOU PREFER.  
+(I haven't tried it yet, but I'm available to assist you.)  
  
 
 **Promoting Your TrustedSender Program**  
-The Yo-AI Assurance Platform is designed to run <a href="https://www.privacyportfolio.com/campaigns.html">Campaigns</a>.
+The Yo-AI Assurance Platform is designed to run <a href="https://www.privacyportfolio.com/campaigns.html">Campaigns</a>.  
 The TrustedSender Campaign is an outreach to influence Senders to participate in or host a TrustedSender Program.  
 In this case, the "conversion rate" is the ratio of Senders who become TrustedSenders.
 
@@ -279,15 +281,15 @@ TrustedSender can be used to:
 - provide evidence you are NOT VIOLATING any agreements or policies with the Sender.
 
 **WHAT YOU CAN DO WITH TrustedSender**  
-If you DON'T have Paubox:
+If you DON'T have Paubox:  
     Request a QR code to get $250 discount on a subscription plan.
     Request assistance for integrating the TrustedSender Program with other email gateway solutions.
-If you DON'T have RingCentral:
-    Request a QR code to get a $300 discount on a subscription plan.
+If you DON'T have RingCentral:  
+    Request a QR code to get a $300 discount on a subscription plan.  
     Request assistance for integrating the TrustedSender Program with other telecommunications solutions
     such as Twilio Voice, SMS, or Chat.
-If you DON'T have Yo-AI: 
-    Clone, modify, and host the Yo-AI Assurance Platform in your environment.
+If you DON'T have Yo-AI:  
+    Clone, modify, and host the Yo-AI Assurance Platform in your environment.  
     Request assistance for integrating the TrustedSender Program with other AI Agent platforms.
 If you DON'T have AWS:
     Replace or refactor lambda functions with similar serverless functions or cloud APIs suited for your environment. Do it yourself or request assistance if needed.
