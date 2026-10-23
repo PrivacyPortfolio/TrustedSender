@@ -48,20 +48,20 @@
     /code
     	/EmailAnalysis
                 mbox_sender_analysis.py
-					- Parses exported mbox files and builds a sender_report.csv,
-			  		used as decision-factors for sending ChangeOfAddress notifications.
-			sender_org_inference.py
-				- Uses a sender_report.csv from mbox_sender_analysis.py to produce a
-			  	suggested organization name and an "is this domain the actual
-			  	organization, or just an intermediary/ESP relaying on their behalf"
-			  	guess for each sender. Every row is a SUGGESTION with a
-			  	confidence flag, not a final answer.
-			WorkMailForwarder_lambda.py
-				- Pulls the raw MIME message from WorkMail
-				- Parses subject, sender, and body
-				- Sends a new email through Paubox to the solicitor-general
-				- Preserves HTML formatting
-				- Works with encrypted inbound mail (Paubox handles encryption on send)
+                  - Parses exported mbox files and builds a sender_report.csv,
+			  	  used as decision-factors for sending ChangeOfAddress notifications.
+                sender_org_inference.py
+				  - Uses a sender_report.csv from mbox_sender_analysis.py to produce a
+			  	  suggested organization name and an "is this domain the actual
+			  	  organization, or just an intermediary/ESP relaying on their behalf"
+			  	  guess for each sender. Every row is a SUGGESTION with a
+			  	  confidence flag, not a final answer.
+                WorkMailForwarder_lambda.py
+				  - Pulls the raw MIME message from WorkMail
+				  - Parses subject, sender, and body
+				  - Sends a new email through Paubox to the solicitor-general
+				  - Preserves HTML formatting
+				  - Works with encrypted inbound mail (Paubox handles encryption on send)
     	/MailboxMigration
 			eml_dir_to_mbox.py
 				- Converts a directory of individual .eml files into a single mbox file
