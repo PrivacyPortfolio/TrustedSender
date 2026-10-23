@@ -1,6 +1,6 @@
-TrustedSender.md
+# TrustedSender.md
 
-** WHAT TrustedSender IS **
+**WHAT TrustedSender IS**
 TrustedSender is an automated decision-making process to “Decide whether to invite this person in.”
 (https://www.yo-ai.ai/trust-and-transparency.html)
 
@@ -19,7 +19,7 @@ which my agents can access through the ToolRegistry.
 (https://www.yo-ai.ai/tool-registry.html)
 
 
-** HOW TrustedSender WORKS **
+**HOW TrustedSender WORKS**
 A "Sender" is a unique email address used by an individual or organization to send email.
 A "Recipient" decides "whether to let this email in".
 
@@ -50,7 +50,7 @@ I could sign up, select my preferences, try it once or twice, and unsubscribe to
 (A common theme embedded in Yo-AI's architectural philosophy is: bidirectional, and mutual processes.)
 
 
-** WHAT I CAN DO WITH TrustedSender **
+**WHAT I CAN DO WITH TrustedSender**
 I can migrate Senders from my three legacy email providers to my new email provider.
 I only want Senders that fit my own custom criteria but I'm also willing to help them honor my preferences.
 (TrustedSender_Decision_Factors.html is what I email to them.)
@@ -115,7 +115,7 @@ As for all remaining Senders who ARE FILTERED OUT, they are STILL IN MY ARCHIVES
 My agents that need to query the archives, can still do so, provided they have access permissions to them.
 
 
-** Inviting TrustedSenders **
+**Inviting TrustedSenders**
 I use email send templates I publish in the Paubox Email API to send email programmatically.
 /Migration/ChangeOfAddress_template.html is a Change of Address Notification Template sent from legacy email providers.
 These are SENT FROM my legacy mailboxes, which the Senders EXPECT. (They can identify me by my email address they have on record.)
@@ -130,7 +130,7 @@ Rarely, will a Sender (or its agents) use the TrustedSender Registration form.
 "I invited you to change my address. I did not invite you to fill out a form or promise me ANYTHING."
 
 
-** Evaluating TrustedSenders **
+**Evaluating TrustedSenders**
 Any Sender that IS REGISTERED as a TrustedSender IS ALSO REQUIRED to maintain an alternative contact
 for <em>adminstrative use</em>: an accountable human that is available to recieve notifications
 or any other information about its communications associated with an individual or organization.
@@ -190,7 +190,7 @@ And so can my agents.
 No decision is made at this point about whether to ALLOW, BLOCK, or CULTIVATE the Sender.
 
 
-** Cultivating TrustedSenders **
+**Cultivating TrustedSenders**
 Trust isn't given -- it's earned.
 I need to continuously earn the trust of my TrustedSenders,
 based on my last email to them -- the one they're likely to remember!
@@ -237,7 +237,7 @@ Managing subscriptions and subscribers is the second level of the TrustedSender 
 The first level is email security.
 
 
-** Protecting TrustedSenders **
+**Protecting TrustedSenders**
 TrustedSenders can subscribe to filtered kafka topics of events from the Yo-AI Platform log,
 so they can see all communication activity on MY SIDE,
 and compare with logs ON THEIR SIDE to ESTABLISH FACTS.
@@ -256,25 +256,25 @@ TrustedSenders can configure their communication preferences UNIVERSALLY -- mean
 TO ALL COMMUNICATION CHANNELS.
 
 
-** Building Your Own TrustedSender Program **
+**Building Your Own TrustedSender Program**
 I built my TrustedSender Program using MY preferred tools.
 While there's nothing stopping you from running your own the Yo-AI Assurance Platform, Paubox Email Gateway, RingCentral tenant, or AWS cloud environment -- you SHOULD be able to implement a TrustedSender Program with the TOOLS YOU PREFER.
 (I haven't tried it yet, but I'm available to assist you.)
  
 
-** Promoting Your TrustedSender Program **
+**Promoting Your TrustedSender Program**
 The Yo-AI Assurance Platform is designed to run <a href="https://www.privacyportfolio.com/campaigns.html">Campaigns</a>.
 The TrustedSender Campaign is an outreach to influence Senders to participate in or host a TrustedSender Program.  
 In this case, the "conversion rate" is the ratio of Senders who become TrustedSenders.
 
-** Leveraging Your TrustedSender Program **
+**Leveraging Your TrustedSender Program**
 TrustedSender can be used to:
 - establish first-party relationships (ControllingParty) with third-party processors (IntermediaryParty).
 - discover which Organizations or Individuals a Sender is acting On-Behalf-Of (OBO).
 - detect changes in ownership, branding, infrastructure, vendors.
 - provide evidence you are NOT VIOLATING any agreements or policies with the Sender.
 
-** WHAT YOU CAN DO WITH TrustedSender **
+**WHAT YOU CAN DO WITH TrustedSender**
 If you DON'T have Paubox:
     Request a QR code to get $250 discount on a subscription plan.
     Request assistance for integrating the TrustedSender Program with other email gateway solutions.
