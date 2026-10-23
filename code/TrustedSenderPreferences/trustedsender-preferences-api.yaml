@@ -1,0 +1,295 @@
+openapi: 3.1.0
+info:
+  title: TrustedSender Preferences API
+  version: "1.0.0"
+  description: >
+    Receives unsubscribe / limit / block requests from a Sender (human, via a form
+    submission) or a Sender's AI agent (via direct API call), scoped to a single
+    address, a whole domain, named Intermediary Parties, and/or non-email transports.
+    Designed to accept simple one-click Paubox Forms submissions unchanged via the
+    legacy /unsubscribe alias, while exposing the full schema at /trusted-sender/action
+    for agents and fine-grained human submissions.
+  contact:
+    name: TrustedSender Program, Yo-AI.ai
+    email: trustedsender@yo-ai.ai
+
+servers:
+  - url: https://yo-ai.ai/api/v1
+
+paths:
+  /unsubscribe:
+    post:
+      summary: Legacy one-click unsubscribe (Paubox Forms compatible)
+      description: >
+        Backward-compatible alias. Accepts the flat Paubox Forms submission shape
+        and internally maps it to a TrustedSenderAction with action=unsubscribe,
+        scope limited to the submitting sender_email only (no domain or
+        intermediary-party extension). Use /trusted-sender/action directly for
+        anything beyond a single sender's own address.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LegacyPauboxUnsubscribe"
+      responses:
+        "200":
+          description: Unsubscribe processed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrustedSenderActionResponse"
+
+  /trusted-sender/action:
+    post:
+      summary: Submit a fine-grained TrustedSender action
+      description: >
+        Used by human-submitted preference-center forms and directly by Sender-side
+        AI agents. Supports unsubscribe, limit, and block actions, each scopable to
+        the sender's own address, their domain, named third-party Intermediary
+        Parties, and/or specific communication transports (email, voice, SMS, chat,
+        social media).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TrustedSenderAction"
+      responses:
+        "200":
+          description: Action processed (fully or partially)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrustedSenderActionResponse"
+        "400":
+          description: Malformed or unresolvable request (e.g. no identifiable sender)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Conflicting scope (e.g. domain-wide block requested by a sender who does not control that domain)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /trusted-sender/status/{sender_email}:
+    get:
+      summary: Look up current trust status for a sender
+      description: >
+        Lets a sender or their agent check current standing before or after
+        submitting an action — useful for agents that want to confirm state
+        rather than assume the POST succeeded silently.
+      parameters:
+        - name: sender_email
+          in: path
+          required: true
+          schema:
+            type: string
+            format: email
+      responses:
+        "200":
+          description: Current status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrustedSenderStatus"
+        "404":
+          description: No record for this sender
+
+components:
+  schemas:
+    TransportType:
+      type: string
+      enum: [email, voice, sms, chat, social_media, push]
+
+    IntermediaryRole:
+      type: string
+      description: Mirrors the Vendor Ecosystem Mapping categories from the TrustedSender Decision-Factors.
+      enum:
+        - esp
+        - crm
+        - marketing_automation
+        - analytics
+        - data_broker
+        - enrichment
+        - file_transfer
+        - other
+
+    ActionType:
+      type: string
+      enum: [unsubscribe, limit, block, resubscribe]
+      description: >
+        unsubscribe = stop marketing/newsletter-class mail only.
+        limit = restrict data sharing with named Intermediary Parties, but keep
+        receiving the sender's own direct mail.
+        block = stop all mail from the specified scope.
+        resubscribe = reverse a prior unsubscribe/limit/block for the given scope.
+
+    Transport:
+      type: object
+      required: [type, action]
+      properties:
+        type:
+          $ref: "#/components/schemas/TransportType"
+        identifier:
+          type: string
+          description: Phone number, handle, or platform-specific address for this transport. Omit for "email" (the sender_email field already identifies it).
+        action:
+          $ref: "#/components/schemas/ActionType"
+
+    IntermediaryParty:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          example: "Salesforce Marketing Cloud"
+        domain:
+          type: string
+          example: "em7952.cyberheistnews.com"
+        role:
+          $ref: "#/components/schemas/IntermediaryRole"
+        action:
+          $ref: "#/components/schemas/ActionType"
+          description: Defaults to the top-level action if omitted.
+
+    Scope:
+      type: object
+      description: What the action applies to. At least one of sender_email or sender_domain is required.
+      properties:
+        sender_email:
+          type: string
+          format: email
+        sender_domain:
+          type: string
+          description: The sender's own domain (e.g. "cyberheistnews.com").
+        extend_to_domain:
+          type: boolean
+          default: false
+          description: If true, action applies to every sender at sender_domain, not just sender_email.
+        intermediary_parties:
+          type: array
+          items:
+            $ref: "#/components/schemas/IntermediaryParty"
+        transports:
+          type: array
+          items:
+            $ref: "#/components/schemas/Transport"
+
+    Requester:
+      type: object
+      required: [platform, submitted_by]
+      properties:
+        platform:
+          type: string
+          example: "yo-ai.ai"
+        requester_id:
+          type: string
+          description: Opaque ID for the person/account making the request, for audit correlation.
+        submitted_by:
+          type: string
+          enum: [human, agent]
+        agent_protocol:
+          type: string
+          example: "A2A"
+          description: Present only when submitted_by=agent. Names the agent-to-agent interface standard used, if any.
+        agent_id:
+          type: string
+          description: Present only when submitted_by=agent.
+
+    TrustedSenderAction:
+      type: object
+      required: [action, scope, requester]
+      properties:
+        action:
+          $ref: "#/components/schemas/ActionType"
+        scope:
+          $ref: "#/components/schemas/Scope"
+        unsubscribe_categories:
+          type: array
+          items:
+            type: string
+          description: Optional finer-grained content categories, for unsubscribe actions only (e.g. ["newsletter", "product_updates"]).
+        reason:
+          type: string
+          description: Free text or a short reason code (e.g. "no_longer_relevant", "unaccountable_channel", "data_governance_concern").
+        signature:
+          type: string
+          description: Base64 signature data, carried through unchanged from form submissions for non-repudiation.
+        event_timestamp:
+          type: string
+          format: date-time
+
+    LegacyPauboxUnsubscribe:
+      type: object
+      description: Flat shape as produced by a default Paubox Forms submission. Mapped internally to a TrustedSenderAction with action=unsubscribe and scope.sender_email = the form's CTP_identifier email field.
+      required: [CTP_identifier, unsubscribe_all]
+      properties:
+        CTP_identifier:
+          type: string
+        CTP_type:
+          type: string
+        CTP_trusted_sender_tag:
+          type: string
+        unsubscribe_all:
+          type: boolean
+        unsubscribe_categories:
+          type: array
+          items:
+            type: string
+        unsubscribe_reason:
+          type: string
+        signature:
+          type: string
+        M_event_date:
+          type: string
+          format: date-time
+
+    TrustedSenderActionResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [success, partial, error]
+        message:
+          type: string
+        trust_status:
+          type: string
+          enum: [TrustedSender, MarketingSender, DualUseVendor, UntrustedSender, Blocked, Unsubscribed]
+        effective_scope:
+          $ref: "#/components/schemas/Scope"
+          description: What was actually applied — may be narrower than requested (e.g. a domain-wide block request from a sender who doesn't control that domain gets narrowed to sender_email only; see the 409 case for when it's rejected outright instead).
+        audit_log_id:
+          type: string
+        event_date:
+          type: string
+          format: date-time
+
+    TrustedSenderStatus:
+      type: object
+      properties:
+        sender_email:
+          type: string
+        trust_status:
+          type: string
+        active_scopes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Scope"
+        last_updated:
+          type: string
+          format: date-time
+
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [error]
+        message:
+          type: string
+        code:
+          type: string
