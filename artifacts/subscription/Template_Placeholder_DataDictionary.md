@@ -1,9 +1,13 @@
 Template_Placeholder_DataDictionary.md
 
 This data dictionary maintains placeholders for:
+
  Email Templates
+
  Campaign Templates
+ 
  Form Templates
+ 
 
 Its purpose is to ensure the wrong content is never sent to the wrong subscriber.
 
