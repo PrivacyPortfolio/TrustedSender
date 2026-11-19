@@ -1,9 +1,9 @@
 Template_Placeholder_DataDictionary.md
 
 This data dictionary maintains placeholders for:
- Paubox Email API Templates
- Paubox Marketing API Templates
- Paubox Forms
+ Email Templates
+ Campaign Templates
+ Form Templates
 
 Its purpose is to ensure the wrong content is never sent to the wrong subscriber.
 
